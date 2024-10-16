@@ -11,8 +11,12 @@ class CoffeeCubit extends Cubit<CoffeeState> {
   final DatabaseHelper databaseHelper;
   Future<List<Coffee>> fetchCoffees() async {
     emit(CoffeeLoading());
-    List<Coffee> coffees = await databaseHelper.getAllCoffees();
-    emit(CoffeeLoaded(coffees: coffees));
+    try {
+      List<Coffee> coffees = await databaseHelper.getAllCoffees();
+      emit(CoffeeLoaded(coffees: coffees));
+    } catch (e) {
+      return emit(CoffeeError(message: e.toString()));
+    }
   }
 
   Future<void> addCoffee(Map<String, dynamic> coffee) async {

@@ -18,4 +18,13 @@ class Coffee {
       image: map['image'],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'type': type, 
+      'price': price,
+      'image': image,
+    };
+  }
 }
