@@ -1,4 +1,4 @@
-import 'package:coffee_shop_app/core/themes/font_weight_helper.dart';
+import 'font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

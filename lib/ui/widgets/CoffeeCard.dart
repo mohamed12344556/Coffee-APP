@@ -1,5 +1,5 @@
-import 'package:coffee_shop_app/core/themes/app_colors.dart';
-import 'package:coffee_shop_app/data/models/coffee_model.dart';
+import '../../core/themes/app_colors.dart';
+import '../../data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeCard extends StatelessWidget {

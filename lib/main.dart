@@ -1,7 +1,9 @@
-import 'package:coffee_shop_app/ui/pages/coffee_home_page.dart';
+import 'core/di/dependancy_injection.dart';
+import 'ui/pages/coffee_home_page.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  await setupLocator();
   runApp(const CoffeeApp());
 }
 

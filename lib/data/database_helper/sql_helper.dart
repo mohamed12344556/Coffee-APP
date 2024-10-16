@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:coffee_shop_app/data/models/coffee_model.dart';
+import '../models/coffee_model.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -65,7 +65,7 @@ class DatabaseHelper {
 
   // Insert into the database
 
-  Future<int> insertDB(
+  Future<void> insertDB(
       {required String name,
       required String type,
       required double price,
@@ -81,21 +81,21 @@ class DatabaseHelper {
       },
     );
     debugPrint('Insert Response: $response');
-    return response;
+    // return response;
   }
 
   // Delete from the database
 
-  Future<int> deleteFDB({required int id}) async {
+  Future<void> deleteFDB({required int id}) async {
     final myDB = await db;
-    int response =
-        await myDB!.delete('Coffees', where: 'id = ?', whereArgs: [id]);
-    return response;
+    // int response =
+    await myDB!.delete('Coffees', where: 'id = ?', whereArgs: [id]);
+    // return response;
   }
 
   // Update the database
 
-  Future<int> updateDB(
+  Future<void> updateDB(
       {required String title,
       required String type,
       required double price,
@@ -113,6 +113,6 @@ class DatabaseHelper {
         where: 'id = ?',
         whereArgs: [id]);
     debugPrint('Update Response: $response');
-    return response;
+    // return response;
   }
 }

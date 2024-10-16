@@ -1,8 +1,8 @@
-import 'package:coffee_shop_app/core/themes/app_colors.dart';
-import 'package:coffee_shop_app/data/models/coffee_model.dart';
-import 'package:coffee_shop_app/my_icons.dart';
-import 'package:coffee_shop_app/ui/widgets/CoffeeCard.dart';
-import 'package:coffee_shop_app/ui/widgets/CoffeeCategoryTab.dart';
+import '../../core/themes/app_colors.dart';
+import '../../data/models/coffee_model.dart';
+import '../../my_icons.dart';
+import '../widgets/CoffeeCard.dart';
+import '../widgets/CoffeeCategoryTab.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,24 +18,28 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
   int selectedIndex = 0;
   List<CoffeeModel> coffeeItems = [
     CoffeeModel(
+      id: 1,
       name: 'Coffee Mocha',
       type: 'Deep Foam',
       price: 4.53,
       image: 'assets/images/2.png',
     ),
     CoffeeModel(
+      id: 2,
       name: 'Flat White',
       type: 'Espresso',
       price: 3.53,
       image: 'assets/images/3.png',
     ),
     CoffeeModel(
+      id: 3,
       name: 'Caffe Mocha',
       type: 'Deep Foam',
       price: 4.53,
       image: 'assets/images/4.png',
     ),
     CoffeeModel(
+      id: 4,
       name: 'Flat White',
       type: 'Espresso',
       price: 3.53,
