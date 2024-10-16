@@ -9,18 +9,28 @@ class CoffeeCubit extends Cubit<CoffeeState> {
   CoffeeCubit({required this.databaseHelper}) : super(CoffeeInitial());
 
   final DatabaseHelper databaseHelper;
-  Future<List<Coffee>> fetchCoffees() async {
-    emit(CoffeeLoading());
+
+  Future<void> fetchCoffees() async {
     try {
-      List<Coffee> coffees = await databaseHelper.getAllCoffees();
+      emit(CoffeeLoading());
+      final coffees = await databaseHelper.readDB();
       emit(CoffeeLoaded(coffees: coffees));
-    } catch (e) {
-      return emit(CoffeeError(message: e.toString()));
+    } on Exception catch (e) {
+      emit(CoffeeError(message: e.toString()));
     }
   }
 
-  Future<void> addCoffee(Map<String, dynamic> coffee) async {
-    await databaseHelper.addCoffee(coffee);
-    fetchCoffees();
+
+
+  Future<void> addCoffee(CoffeeModel coffee) async {
+    try {
+      emit(CoffeeLoading());
+      await databaseHelper.insertDB(
+          title: coffee.name, description: coffee.type);
+      final coffees = await databaseHelper.readDB();
+      emit(CoffeeLoaded(coffees: coffees));
+    } on Exception catch (e) {
+      emit(CoffeeError(message: e.toString()));
+    }
   }
 }

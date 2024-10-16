@@ -3,7 +3,7 @@ import 'package:coffee_shop_app/data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeCard extends StatelessWidget {
-  final Coffee coffee;
+  final CoffeeModel coffee;
 
   const CoffeeCard({
     super.key,

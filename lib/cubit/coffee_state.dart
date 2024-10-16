@@ -8,7 +8,7 @@ final class CoffeeInitial extends CoffeeState {}
 final class CoffeeLoading extends CoffeeState {}
 
 final class CoffeeLoaded extends CoffeeState {
-  final List<Coffee> coffees;
+  final List<CoffeeModel> coffees;
 
   CoffeeLoaded({required this.coffees});
 }
@@ -20,7 +20,7 @@ final class CoffeeError extends CoffeeState {
 }
 
 final class CoffeeAdded extends CoffeeState {
-  final Coffee coffee;
+  final CoffeeModel coffee;
 
   CoffeeAdded({required this.coffee});
 }

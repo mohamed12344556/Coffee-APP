@@ -1,52 +1,118 @@
-import 'dart:async';
+import 'dart:developer';
+
 import 'package:coffee_shop_app/data/models/coffee_model.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper instance = DatabaseHelper._init();
-  static Database? _database;
+  static Database? _db;
 
-  DatabaseHelper._init();
-
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDB('coffee.db');
-    return _database!;
+  Future<Database?> get db async {
+    if (_db != null && _db!.isOpen) {
+      return _db;
+    }
+    _db = await initialDB();
+    return _db;
   }
 
-  Future<Database> _initDB(String filePath) async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, filePath);
-
-    return await openDatabase(path, version: 1, onCreate: _createDB);
-  }
-
-  Future _createDB(Database db, int version) async {
+  // OnCreate function to create the table
+  Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE coffees (
+      CREATE TABLE Coffees (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         type TEXT NOT NULL,
-        price REAL NOT NULL
+        price REAL NOT NULL,
+        image TEXT NOT NULL
       )
     ''');
   }
 
-  Future<int> addCoffee(Map<String, dynamic> coffee) async {
-    final db = await instance.database;
-    return await db.insert('coffees', coffee);
+  // Handle database upgrades
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    log('onUpgrade called');
+    // await db.execute('ALERT TABLE Notes ADD COLUMN newColumn TEXT');
   }
 
-  Future<List<Coffee>> getAllCoffees() async {
-    final db = await instance.database;
-
-    final List<Map<String, dynamic>> maps = await db.query('coffees');
-    return maps.map((e) => Coffee.fromMap(e)).toList();
+  // Initialize the database
+  Future<Database> initialDB() async {
+    String dbPath = await getDatabasesPath();
+    String path = join(dbPath, 'coffee.db');
+    Database db = await openDatabase(path,
+        version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    return db;
   }
 
-  Future close() async {
-    final db = await instance.database;
-    db.close();
+  // Delete the database
+  Future<void> deleteDB() async {
+    String dbPath = await getDatabasesPath();
+    String path = join(dbPath, 'coffee.db');
+    await deleteDatabase(path);
+    debugPrint('Database has been deleted: $path');
+  }
+
+  // Read from the database and convert the data to List<CoffeeModel>
+
+  Future<List<CoffeeModel>> readDB() async {
+    final myDB = await db;
+    final List<Map<String, dynamic>> response = await myDB!.query('Coffees');
+    final List<CoffeeModel> notes =
+        response.map((row) => CoffeeModel.fromMap(row)).toList();
+    debugPrint(notes.toString());
+    return notes;
+  }
+
+  // Insert into the database
+
+  Future<int> insertDB(
+      {required String name,
+      required String type,
+      required double price,
+      required String image}) async {
+    final myDB = await db;
+    int response = await myDB!.insert(
+      'Coffees',
+      {
+        'name': name,
+        'type': type,
+        'price': price,
+        'image': image,
+      },
+    );
+    debugPrint('Insert Response: $response');
+    return response;
+  }
+
+  // Delete from the database
+
+  Future<int> deleteFDB({required int id}) async {
+    final myDB = await db;
+    int response =
+        await myDB!.delete('Coffees', where: 'id = ?', whereArgs: [id]);
+    return response;
+  }
+
+  // Update the database
+
+  Future<int> updateDB(
+      {required String title,
+      required String type,
+      required double price,
+      required String image,
+      required int id}) async {
+    final myDB = await db;
+    int response = await myDB!.update(
+        'Coffees',
+        {
+          'name': title,
+          'type': type,
+          'price': price,
+          'image': image,
+        },
+        where: 'id = ?',
+        whereArgs: [id]);
+    debugPrint('Update Response: $response');
+    return response;
   }
 }

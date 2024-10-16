@@ -1,17 +1,17 @@
-class Coffee {
+class CoffeeModel {
   final String name;
   final String type;
   final double price;
   final String image;
 
-  Coffee({
+  CoffeeModel({
     required this.name,
     required this.type,
     required this.price,
     required this.image,
   });
-  factory Coffee.fromMap(Map<String, dynamic> map) {
-    return Coffee(
+  factory CoffeeModel.fromMap(Map<String, dynamic> map) {
+    return CoffeeModel(
       name: map['name'],
       type: map['type'],
       price: map['price'],

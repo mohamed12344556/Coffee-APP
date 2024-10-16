@@ -16,30 +16,30 @@ class CoffeeHomePage extends StatefulWidget {
 class _CoffeeHomePageState extends State<CoffeeHomePage> {
   int selectedCategoryIndex = 0;
   int selectedIndex = 0;
-  List<Coffee> coffeeItems = [
-    Coffee(
-      name: 'Caffe Mocha',
+  List<CoffeeModel> coffeeItems = [
+    CoffeeModel(
+      name: 'Coffee Mocha',
       type: 'Deep Foam',
       price: 4.53,
       image: 'assets/images/2.png',
     ),
-    Coffee(
+    CoffeeModel(
       name: 'Flat White',
       type: 'Espresso',
       price: 3.53,
-      image: 'assets/images/2.png',
+      image: 'assets/images/3.png',
     ),
-    Coffee(
+    CoffeeModel(
       name: 'Caffe Mocha',
       type: 'Deep Foam',
       price: 4.53,
-      image: 'assets/images/2.png',
+      image: 'assets/images/4.png',
     ),
-    Coffee(
+    CoffeeModel(
       name: 'Flat White',
       type: 'Espresso',
       price: 3.53,
-      image: 'assets/images/2.png',
+      image: 'assets/images/5.png',
     ),
     // Add more coffee items here
   ];
