@@ -40,7 +40,9 @@ class DatabaseHelper {
 
   Future<List<Coffee>> getAllCoffees() async {
     final db = await instance.database;
-    return await db.query('coffees');
+
+    final List<Map<String, dynamic>> maps = await db.query('coffees');
+    return maps.map((e) => Coffee.fromMap(e)).toList();
   }
 
   Future close() async {

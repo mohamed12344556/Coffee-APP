@@ -10,4 +10,12 @@ class Coffee {
     required this.price,
     required this.image,
   });
+  factory Coffee.fromMap(Map<String, dynamic> map) {
+    return Coffee(
+      name: map['name'],
+      type: map['type'],
+      price: map['price'],
+      image: map['image'],
+    );
+  }
 }
