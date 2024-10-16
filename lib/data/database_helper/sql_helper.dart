@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:coffee_shop_app/data/models/coffee_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -37,7 +38,7 @@ class DatabaseHelper {
     return await db.insert('coffees', coffee);
   }
 
-  Future<List<Map<String, dynamic>>> getAllCoffees() async {
+  Future<List<Coffee>> getAllCoffees() async {
     final db = await instance.database;
     return await db.query('coffees');
   }
