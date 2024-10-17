@@ -61,7 +61,7 @@ class WelcomePage extends StatelessWidget {
                       // TODO Define the action here
                     },
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size(327, 56),
+                      fixedSize: const Size(327, 56),
                       backgroundColor: AppColors.orange,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),

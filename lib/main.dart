@@ -1,3 +1,6 @@
+import 'package:coffee_shop_app/ui/pages/coffee_details_page.dart';
+import 'package:coffee_shop_app/ui/pages/welcome_page.dart';
+
 import 'core/di/dependancy_injection.dart';
 import 'ui/pages/coffee_home_page.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +13,16 @@ void main() async {
 class CoffeeApp extends StatelessWidget {
   const CoffeeApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CoffeeHomePage(),
+      routes: {
+        '/coffee_home': (context) => const CoffeeHomePage(),
+        '/welcome': (context) => const WelcomePage(),
+        '/details': (context) => const CoffeeDetailPage(),
+      },
+      initialRoute: '/details',
     );
   }
 }

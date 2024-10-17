@@ -1,3 +1,4 @@
+
 import '../../core/themes/app_colors.dart';
 import '../../data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +22,64 @@ class CoffeeCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                image: DecorationImage(
-                  image: AssetImage(coffee.image),
-                  fit: BoxFit.cover,
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: AssetImage(coffee.image),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Opacity(
+                    opacity: 0.8,
+                    child: Container(
+                      width: 65,
+                      height: 35,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 4,
+                      ),
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xff111111),
+                            Color(0xff313131),
+                          ],
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          bottomLeft: Radius.circular(25),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Color(0xffFBBE21),
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            coffee.rate.toString(),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(

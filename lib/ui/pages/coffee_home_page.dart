@@ -23,6 +23,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
       type: 'Deep Foam',
       price: 4.53,
       image: 'assets/images/2.png',
+      rate: 4.5,
     ),
     CoffeeModel(
       id: 2,
@@ -30,6 +31,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
       type: 'Espresso',
       price: 3.53,
       image: 'assets/images/3.png',
+      rate: 4.5,
     ),
     CoffeeModel(
       id: 3,
@@ -37,6 +39,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
       type: 'Deep Foam',
       price: 4.53,
       image: 'assets/images/4.png',
+      rate: 4.5,
     ),
     CoffeeModel(
       id: 4,
@@ -44,6 +47,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
       type: 'Espresso',
       price: 3.53,
       image: 'assets/images/5.png',
+      rate: 4.5,
     ),
     // Add more coffee items here
   ];
@@ -71,11 +75,21 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
               top: 0,
               left: 0,
               right: 0,
-              child: AppBar(
-                backgroundColor: const Color(0xFF1B1B1B),
-                elevation: 0,
-                toolbarHeight: 280,
-                title: Column(
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xff111111),
+                      Color(0xff313131),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                  ),
+                ),
+                height: 280,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
@@ -85,7 +99,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
                         color: Color(0xffA2A2A2),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 8),
                     const Row(
                       children: [
                         Text(
@@ -104,7 +118,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 24),
                     Row(
                       children: [
                         Expanded(
@@ -151,7 +165,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
             ),
             // Promo Banner
             Positioned(
-              top: 220,
+              top: 200,
               left: 20,
               right: 20,
               child: Container(
@@ -170,11 +184,20 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
                 child: Stack(
                   children: [
                     Positioned(
-                      top: 60,
-                      left: 13,
-                      right: 220,
+                      top: 68,
+                      left: 15,
+                      right: 160,
                       child: Container(
-                        height: 20,
+                        height: 27,
+                        color: Colors.black.withOpacity(0.7),
+                      ),
+                    ),
+                    Positioned(
+                      top: 111,
+                      left: 15,
+                      right: 207,
+                      child: Container(
+                        height: 24,
                         color: Colors.black.withOpacity(0.7),
                       ),
                     ),
@@ -287,10 +310,13 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
                   ),
                   if (selectedIndex == 0)
                     Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.orange,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                       margin: const EdgeInsets.only(top: 4),
-                      height: 2,
-                      width: 20,
-                      color: AppColors.orange,
+                      height: 5,
+                      width: 10,
                     ),
                 ],
               ),
@@ -305,10 +331,13 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
                   ),
                   if (selectedIndex == 1)
                     Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.orange,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                       margin: const EdgeInsets.only(top: 4),
-                      height: 2,
-                      width: 20,
-                      color: AppColors.orange,
+                      height: 5,
+                      width: 10,
                     ),
                 ],
               ),
@@ -323,10 +352,13 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
                   ),
                   if (selectedIndex == 2)
                     Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.orange,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                       margin: const EdgeInsets.only(top: 4),
-                      height: 2,
-                      width: 20,
-                      color: AppColors.orange,
+                      height: 5,
+                      width: 10,
                     ),
                 ],
               ),
@@ -341,10 +373,13 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
                   ),
                   if (selectedIndex == 3)
                     Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.orange,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
                       margin: const EdgeInsets.only(top: 4),
-                      height: 2,
-                      width: 20,
-                      color: AppColors.orange,
+                      height: 5,
+                      width: 10,
                     ),
                 ],
               ),

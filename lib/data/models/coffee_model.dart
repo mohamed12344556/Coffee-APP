@@ -4,6 +4,7 @@ class CoffeeModel {
   final String type;
   final double price;
   final String image;
+  final double rate;
 
   CoffeeModel({
     required this.id,
@@ -11,6 +12,7 @@ class CoffeeModel {
     required this.type,
     required this.price,
     required this.image,
+    required this.rate,
   });
   factory CoffeeModel.fromMap(Map<String, dynamic> map) {
     return CoffeeModel(
@@ -19,6 +21,7 @@ class CoffeeModel {
       type: map['type'],
       price: map['price'],
       image: map['image'],
+      rate: map['rate'],
     );
   }
 
