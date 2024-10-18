@@ -1,5 +1,5 @@
 import 'package:coffee_shop_app/data/models/coffee_model.dart';
-import 'package:coffee_shop_app/ui/widgets/CoffeeCard.dart';
+import 'package:coffee_shop_app/ui/widgets/coffee_card.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeGridView extends StatelessWidget {

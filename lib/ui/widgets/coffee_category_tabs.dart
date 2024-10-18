@@ -1,4 +1,4 @@
-import 'package:coffee_shop_app/ui/widgets/CoffeeCategoryTab.dart';
+import 'package:coffee_shop_app/ui/widgets/coffee_category_tab.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeCategoryTabs extends StatelessWidget {

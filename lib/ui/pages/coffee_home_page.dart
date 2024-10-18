@@ -1,7 +1,7 @@
-import 'package:coffee_shop_app/ui/widgets/BuildAppBar.dart';
-import 'package:coffee_shop_app/ui/widgets/BuildBanner.dart';
-import 'package:coffee_shop_app/ui/widgets/CoffeeBottomNavigationBar.dart';
-import 'package:coffee_shop_app/ui/widgets/CoffeeList.dart';
+import 'package:coffee_shop_app/ui/widgets/build_app_bar.dart';
+import 'package:coffee_shop_app/ui/widgets/build_banner.dart';
+import 'package:coffee_shop_app/ui/widgets/coffee_bottom_navigation_bar.dart';
+import 'package:coffee_shop_app/ui/widgets/coffee_list.dart';
 import '../../data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
 
