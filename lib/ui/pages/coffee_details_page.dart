@@ -1,5 +1,6 @@
 import 'package:coffee_shop_app/core/themes/app_colors.dart';
 import 'package:coffee_shop_app/core/themes/font_weight_helper.dart';
+import 'package:coffee_shop_app/my_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +21,8 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
         toolbarHeight: 115,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+              MyIcons.type_regular__state_outline__library_arrow___left_2),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -28,7 +30,8 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
         title: const Text('Detail'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.favorite_border),
+            icon:
+                const Icon(MyIcons.type_regular__state_outline__library_heart),
             onPressed: () {},
           ),
         ],
@@ -66,27 +69,48 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
               children: [
                 Text(
                   'Ice/Hot',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Color(0xffA2A2A2)),
                 ),
                 Spacer(),
-                Icon(Icons.local_cafe, color: Colors.brown),
+                Icon(Icons.local_cafe, color: AppColors.orange),
                 SizedBox(width: 16),
-                Icon(Icons.coffee, color: Colors.brown),
+                Icon(Icons.coffee, color: AppColors.orange),
                 SizedBox(width: 16),
-                Icon(Icons.menu_book, color: Colors.brown),
+                Icon(Icons.menu_book, color: AppColors.orange),
               ],
             ),
             const SizedBox(height: 16),
-            const Row(
+            Row(
               children: [
-                Icon(Icons.star, color: Colors.amber),
-                SizedBox(width: 4),
-                Text('4.8'),
-                SizedBox(width: 8),
-                Text('(230)', style: TextStyle(color: Colors.grey)),
+                const Icon(MyIcons.type_regular__state_outline__library_star,
+                    color: Color(0xffFBBE21)),
+                const SizedBox(width: 4),
+                Text(
+                  '4.8',
+                  style: GoogleFonts.sora(
+                    fontSize: 16,
+                    fontWeight: FontWeightHelper.bold,
+                  ),
+                ),
+                const SizedBox(width: 2),
+                Text(
+                  '(230)',
+                  style: GoogleFonts.sora(
+                    color: const Color(0xffA2A2A2),
+                    fontSize: 12,
+                    // fontWeight: FontWeightHelper.regular,
+                  ),
+                ),
               ],
             ),
-            const SizedBox(height: 16),
+            const Divider(
+              height: 30,
+              thickness: 1,
+              color: Color(0xffE3E3E3),
+              indent: 20,
+              endIndent: 20,
+            ),
+            // const SizedBox(height: 16),
             Text(
               'Description',
               style: GoogleFonts.sora(

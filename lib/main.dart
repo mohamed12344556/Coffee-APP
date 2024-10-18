@@ -1,4 +1,5 @@
 import 'package:coffee_shop_app/ui/pages/coffee_details_page.dart';
+import 'package:coffee_shop_app/ui/pages/order_page.dart';
 import 'package:coffee_shop_app/ui/pages/welcome_page.dart';
 
 import 'core/di/dependancy_injection.dart';
@@ -21,8 +22,9 @@ class CoffeeApp extends StatelessWidget {
         '/coffee_home': (context) => const CoffeeHomePage(),
         '/welcome': (context) => const WelcomePage(),
         '/details': (context) => const CoffeeDetailPage(),
+        '/orders': (context) =>  OrderPage(),
       },
-      initialRoute: '/details',
+      initialRoute: '/orders',
     );
   }
 }
