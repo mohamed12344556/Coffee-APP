@@ -1,0 +1,33 @@
+import 'package:coffee_shop_app/data/models/coffee_model.dart';
+import 'package:coffee_shop_app/ui/widgets/CoffeeCategoryTabs.dart';
+import 'package:coffee_shop_app/ui/widgets/CoffeeGridView.dart';
+import 'package:flutter/material.dart';
+
+class CoffeeList extends StatelessWidget {
+  final List<CoffeeModel> coffeeItems;
+  final int selectedCategoryIndex;
+  final Function(int) updateCategory;
+
+  const CoffeeList({
+    super.key,
+    required this.coffeeItems,
+    required this.selectedCategoryIndex,
+    required this.updateCategory,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      children: [
+        const SizedBox(height: 20),
+        CoffeeCategoryTabs(
+          selectedCategoryIndex: selectedCategoryIndex,
+          updateCategory: updateCategory,
+        ),
+        const SizedBox(height: 20),
+        CoffeeGridView(coffeeItems: coffeeItems),
+      ],
+    );
+  }
+}

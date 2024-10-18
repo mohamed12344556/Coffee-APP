@@ -1,8 +1,12 @@
-import '../../core/themes/app_colors.dart';
+import 'package:coffee_shop_app/core/themes/app_styles.dart';
+import 'package:coffee_shop_app/ui/widgets/custom_button.dart';
+
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
+
+  static const String id = "WelcomePage";
 
   @override
   Widget build(BuildContext context) {
@@ -30,48 +34,27 @@ class WelcomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Spacer(),
-                  // Get Started Button
                   // Title Text
-                  const Text(
+                  Text(
                     'Fall in Love with Coffee in Blissful Delight!',
-                    style: TextStyle(
-                      fontSize: 32,
-                      letterSpacing: 2,
-                      height: 1.5,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppTextStyles.font32WhiteSemiBold,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 10),
                   // Subtitle Text
                   Text(
                     'Welcome to our cozy coffee corner, where every cup is a delightful for you.',
-                    style: TextStyle(
-                      fontSize: 16,
-                      letterSpacing: 1.2,
-                      height: 1.5,
-                      color: Colors.white.withOpacity(0.8),
-                    ),
+                    style: AppTextStyles.font14WhiteRegular,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 25),
-                  ElevatedButton(
+                  CustomButton(
+                    title: 'Get Started',
                     onPressed: () {
-                      // TODO Define the action here
+                      Navigator.pushNamed(context, '/coffee_home');
                     },
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(327, 56),
-                      backgroundColor: AppColors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                    child: const Text(
-                      'Get Started',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
                   ),
+
                   const SizedBox(height: 40),
                 ],
               ),

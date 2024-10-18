@@ -1,4 +1,5 @@
 import 'package:coffee_shop_app/ui/pages/coffee_details_page.dart';
+import 'package:coffee_shop_app/ui/pages/delivery_page.dart';
 import 'package:coffee_shop_app/ui/pages/order_page.dart';
 import 'package:coffee_shop_app/ui/pages/welcome_page.dart';
 
@@ -19,12 +20,13 @@ class CoffeeApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/coffee_home': (context) => const CoffeeHomePage(),
-        '/welcome': (context) => const WelcomePage(),
+        CoffeeHomePage.id: (context) => const CoffeeHomePage(),
+        WelcomePage.id: (context) => const WelcomePage(),
         '/details': (context) => const CoffeeDetailPage(),
-        '/orders': (context) =>  OrderPage(),
+        '/orders': (context) => OrderPage(),
+        '/delivery': (context) => const DeliveryPage(),
       },
-      initialRoute: '/orders',
+      initialRoute: CoffeeHomePage.id,
     );
   }
 }
