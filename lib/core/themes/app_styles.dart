@@ -1,4 +1,4 @@
-import 'package:coffee_shop_app/core/themes/app_colors.dart';
+import 'app_colors.dart';
 
 import 'font_weight_helper.dart';
 import 'package:flutter/material.dart';

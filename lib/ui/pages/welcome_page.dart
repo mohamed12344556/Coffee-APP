@@ -1,5 +1,7 @@
-import 'package:coffee_shop_app/core/themes/app_styles.dart';
-import 'package:coffee_shop_app/ui/widgets/custom_button.dart';
+import 'package:coffee_shop_app/ui/pages/coffee_home_page.dart';
+
+import '../../core/themes/app_styles.dart';
+import '../widgets/custom_button.dart';
 
 import 'package:flutter/material.dart';
 
@@ -51,7 +53,7 @@ class WelcomePage extends StatelessWidget {
                   CustomButton(
                     title: 'Get Started',
                     onPressed: () {
-                      Navigator.pushNamed(context, '/coffee_home');
+                      Navigator.pushNamed(context, CoffeeHomePage.id);
                     },
                   ),
 

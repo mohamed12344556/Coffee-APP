@@ -1,5 +1,5 @@
-import 'package:coffee_shop_app/core/themes/app_colors.dart';
-import 'package:coffee_shop_app/my_icons.dart';
+import '../../core/themes/app_colors.dart';
+import '../../my_icons.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeBottomNavigationBar extends StatelessWidget {

@@ -1,6 +1,6 @@
-import 'package:coffee_shop_app/data/models/coffee_model.dart';
-import 'package:coffee_shop_app/ui/widgets/coffee_category_tabs.dart';
-import 'package:coffee_shop_app/ui/widgets/coffee_grid_view.dart';
+import '../../data/models/coffee_model.dart';
+import 'coffee_category_tabs.dart';
+import 'coffee_grid_view.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeList extends StatelessWidget {

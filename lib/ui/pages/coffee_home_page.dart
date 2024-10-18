@@ -1,9 +1,9 @@
-import 'package:coffee_shop_app/ui/widgets/build_app_bar.dart';
-import 'package:coffee_shop_app/ui/widgets/build_banner.dart';
-import 'package:coffee_shop_app/ui/widgets/coffee_bottom_navigation_bar.dart';
-import 'package:coffee_shop_app/ui/widgets/coffee_list.dart';
-import '../../data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
+import '../../data/models/coffee_model.dart';
+import '../widgets/build_banner.dart';
+import '../widgets/build_home_app_bar.dart';
+import '../widgets/coffee_bottom_navigation_bar.dart';
+import '../widgets/coffee_list.dart';
 
 class CoffeeHomePage extends StatefulWidget {
   const CoffeeHomePage({super.key});
@@ -17,6 +17,8 @@ class CoffeeHomePage extends StatefulWidget {
 class _CoffeeHomePageState extends State<CoffeeHomePage> {
   int selectedCategoryIndex = 0;
   int selectedIndex = 0;
+  TextEditingController searchController = TextEditingController();
+
   List<CoffeeModel> coffeeItems = [
     CoffeeModel(
         id: 1,
@@ -48,6 +50,33 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
         rate: 4.5),
   ];
 
+  List<CoffeeModel> filteredCoffeeItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredCoffeeItems = coffeeItems;
+    searchController.addListener(() {
+      filterCoffeeItems();
+    });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  void filterCoffeeItems() {
+    setState(() {
+      filteredCoffeeItems = coffeeItems
+          .where((coffee) => coffee.name
+              .toLowerCase()
+              .contains(searchController.text.toLowerCase()))
+          .toList();
+    });
+  }
+
   void updateCategory(int index) {
     setState(() {
       selectedCategoryIndex = index;
@@ -67,11 +96,11 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
         backgroundColor: const Color(0xffF9F9F9),
         body: Stack(
           children: [
-            const Positioned(
+            Positioned(
               top: 0,
               left: 0,
               right: 0,
-              child: BuildCustomAppBar(),
+              child: BuildCustomAppBar(SearchController: searchController),
             ),
             // Promo Banner
             const Positioned(
@@ -83,7 +112,7 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
             Positioned.fill(
               top: 380,
               child: CoffeeList(
-                coffeeItems: coffeeItems,
+                coffeeItems: filteredCoffeeItems,
                 selectedCategoryIndex: selectedCategoryIndex,
                 updateCategory: updateCategory,
               ),

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import '../models/coffee_model.dart';
+import 'package:coffee_shop_app/data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -24,23 +24,31 @@ class DatabaseHelper {
         name TEXT NOT NULL,
         type TEXT NOT NULL,
         price REAL NOT NULL,
-        image TEXT NOT NULL
+        image TEXT NOT NULL,
+        rate REAL NOT NULL
       )
     ''');
   }
 
   // Handle database upgrades
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    log('onUpgrade called');
-    // await db.execute('ALERT TABLE Notes ADD COLUMN newColumn TEXT');
+    if (oldVersion < newVersion) {
+      // Example: Add new 'rate' column if it does not exist
+      await db.execute('ALTER TABLE Coffees ADD COLUMN rate REAL NOT NULL DEFAULT 0.0');
+      log('Database upgraded from version $oldVersion to $newVersion');
+    }
   }
 
   // Initialize the database
   Future<Database> initialDB() async {
     String dbPath = await getDatabasesPath();
     String path = join(dbPath, 'coffee.db');
-    Database db = await openDatabase(path,
-        version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    Database db = await openDatabase(
+      path,
+      version: 2, // Increment version to trigger upgrade
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
+    );
     return db;
   }
 
@@ -53,23 +61,23 @@ class DatabaseHelper {
   }
 
   // Read from the database and convert the data to List<CoffeeModel>
-
   Future<List<CoffeeModel>> readDB() async {
     final myDB = await db;
     final List<Map<String, dynamic>> response = await myDB!.query('Coffees');
-    final List<CoffeeModel> notes =
+    final List<CoffeeModel> coffees =
         response.map((row) => CoffeeModel.fromMap(row)).toList();
-    debugPrint(notes.toString());
-    return notes;
+    debugPrint(coffees.toString());
+    return coffees;
   }
 
   // Insert into the database
-
-  Future<void> insertDB(
-      {required String name,
-      required String type,
-      required double price,
-      required String image}) async {
+  Future<void> insertDB({
+    required String name,
+    required String type,
+    required double price,
+    required String image,
+    required double rate, // Add rate parameter
+  }) async {
     final myDB = await db;
     int response = await myDB!.insert(
       'Coffees',
@@ -78,41 +86,40 @@ class DatabaseHelper {
         'type': type,
         'price': price,
         'image': image,
+        'rate': rate, // Insert rate into the database
       },
     );
     debugPrint('Insert Response: $response');
-    // return response;
   }
 
   // Delete from the database
-
   Future<void> deleteFDB({required int id}) async {
     final myDB = await db;
-    // int response =
     await myDB!.delete('Coffees', where: 'id = ?', whereArgs: [id]);
-    // return response;
   }
 
   // Update the database
-
-  Future<void> updateDB(
-      {required String title,
-      required String type,
-      required double price,
-      required String image,
-      required int id}) async {
+  Future<void> updateDB({
+    required String name,
+    required String type,
+    required double price,
+    required String image,
+    required double rate, // Add rate parameter for updating
+    required int id,
+  }) async {
     final myDB = await db;
     int response = await myDB!.update(
-        'Coffees',
-        {
-          'name': title,
-          'type': type,
-          'price': price,
-          'image': image,
-        },
-        where: 'id = ?',
-        whereArgs: [id]);
+      'Coffees',
+      {
+        'name': name,
+        'type': type,
+        'price': price,
+        'image': image,
+        'rate': rate, // Update rate in the database
+      },
+      where: 'id = ?',
+      whereArgs: [id],
+    );
     debugPrint('Update Response: $response');
-    // return response;
   }
 }

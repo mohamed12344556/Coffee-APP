@@ -1,9 +1,11 @@
-import 'package:coffee_shop_app/my_icons.dart';
+import '../../my_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeliveryPage extends StatefulWidget {
   const DeliveryPage({super.key});
+
+  static const String id = "delivery_page";
 
   @override
   State<DeliveryPage> createState() => _DeliveryPageState();
