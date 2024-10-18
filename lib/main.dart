@@ -1,10 +1,9 @@
-import 'package:coffee_shop_app/cubit/coffee_cubit.dart';
-import 'package:coffee_shop_app/data/database_helper/sql_helper.dart';
-import 'package:coffee_shop_app/ui/admin/pages/admain_page.dart';
-import 'package:coffee_shop_app/ui/pages/coffee_home_page.dart';
+import 'cubit/coffee_cubit.dart';
+import 'data/database_helper/sql_helper.dart';
+import 'ui/admin/pages/admain_page.dart';
+import 'ui/pages/coffee_home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'data/models/coffee_model.dart';
 import 'ui/pages/coffee_details_page.dart';
 import 'ui/pages/delivery_page.dart';
 import 'ui/pages/order_page.dart';

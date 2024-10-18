@@ -1,6 +1,7 @@
-import 'package:coffee_shop_app/core/themes/app_colors.dart';
-import 'package:coffee_shop_app/my_icons.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/themes/app_colors.dart';
+import '../../my_icons.dart';
 
 class BuildCustomAppBar extends StatelessWidget {
   const BuildCustomAppBar({

@@ -1,4 +1,4 @@
-import 'package:coffee_shop_app/ui/pages/coffee_home_page.dart';
+import 'coffee_home_page.dart';
 
 import '../../core/themes/app_styles.dart';
 import '../widgets/custom_button.dart';
@@ -27,7 +27,6 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
 
-          // Content
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -36,7 +35,6 @@ class WelcomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Spacer(),
-                  // Title Text
                   Text(
                     'Fall in Love with Coffee in Blissful Delight!',
                     style: AppTextStyles.font32WhiteSemiBold,

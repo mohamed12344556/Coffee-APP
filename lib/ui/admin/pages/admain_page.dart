@@ -1,6 +1,6 @@
-import 'package:coffee_shop_app/core/di/dependency_injection.dart';
-import 'package:coffee_shop_app/data/database_helper/sql_helper.dart';
-import 'package:coffee_shop_app/data/models/coffee_model.dart';
+import '../../../core/di/dependency_injection.dart';
+import '../../../data/database_helper/sql_helper.dart';
+import '../../../data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
 
 class AdminPage extends StatefulWidget {

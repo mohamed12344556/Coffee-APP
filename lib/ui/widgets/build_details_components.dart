@@ -1,5 +1,5 @@
-import 'package:coffee_shop_app/data/models/coffee_model.dart';
-import 'package:coffee_shop_app/ui/pages/order_page.dart';
+import '../../data/models/coffee_model.dart';
+import '../pages/order_page.dart';
 
 import '../../core/themes/app_colors.dart';
 import '../../core/themes/font_weight_helper.dart';
@@ -215,7 +215,7 @@ class _SizeSelectorState extends State<SizeSelector> {
 
 class CoffeePriceAndBuy extends StatelessWidget {
   final double price;
-  final CoffeeModel selectedCoffee; // إضافة المتغير الخاص بالقهوة المختارة
+  final CoffeeModel selectedCoffee;
 
   const CoffeePriceAndBuy({super.key, required this.price, required this.selectedCoffee});
 
@@ -246,11 +246,10 @@ class CoffeePriceAndBuy extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            // تمرير القهوة المختارة إلى صفحة OrderPage
             Navigator.pushNamed(
               context,
               OrderPage.id,
-              arguments: [selectedCoffee], // تمرير القهوة كمصفوفة
+              arguments: [selectedCoffee],
             );
           },
           style: ElevatedButton.styleFrom(

@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../data/models/coffee_model.dart';
 import 'coffee_category_tabs.dart';
 import 'coffee_grid_view.dart';
-import 'package:flutter/material.dart';
 
 class CoffeeList extends StatelessWidget {
   final List<CoffeeModel> coffeeItems;

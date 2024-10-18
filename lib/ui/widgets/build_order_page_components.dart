@@ -1,7 +1,7 @@
-import 'package:coffee_shop_app/core/themes/app_colors.dart';
-import 'package:coffee_shop_app/core/themes/font_weight_helper.dart';
-import 'package:coffee_shop_app/my_icons.dart';
-import 'package:coffee_shop_app/ui/widgets/custom_button.dart';
+import '../../core/themes/app_colors.dart';
+import '../../core/themes/font_weight_helper.dart';
+import '../../my_icons.dart';
+import 'custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

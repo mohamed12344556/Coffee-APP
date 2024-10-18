@@ -1,4 +1,4 @@
-import 'package:coffee_shop_app/ui/pages/coffee_details_page.dart';
+import '../pages/coffee_details_page.dart';
 
 import '../../core/themes/app_colors.dart';
 import '../../data/models/coffee_model.dart';

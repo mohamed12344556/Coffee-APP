@@ -1,4 +1,4 @@
-import 'package:coffee_shop_app/core/di/dependency_injection.dart';
+import '../core/di/dependency_injection.dart';
 
 import '../data/database_helper/sql_helper.dart';
 import '../data/models/coffee_model.dart';
@@ -38,7 +38,7 @@ class CoffeeCubit extends Cubit<CoffeeState> {
         type: coffee.type,
         price: coffee.price,
         image: coffee.image,
-        rate: coffee.rate, // تأكد من تمرير حقل rate
+        rate: coffee.rate, 
       );
       final coffees = await databaseHelper.readDB();
 

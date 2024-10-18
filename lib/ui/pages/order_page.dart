@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../data/models/coffee_model.dart';
 import '../widgets/build_order_page_components.dart';
 
@@ -12,7 +13,7 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
-  bool isDeliver = false; // Toggle between Deliver and Pick Up
+  bool isDeliver = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _OrderPageState extends State<OrderPage> {
             if (!isDeliver) buildDeliveryAddressSection(),
             const Divider(height: 20, thickness: 1, color: Color(0xffE3E3E3)),
             buildProductSection(
-                selectedCoffees), // تمرير القهوة المختارة لعرض المنتجات
+                selectedCoffees), 
             const Divider(height: 35, thickness: 4, color: Color(0xFFF9F2ED)),
             buildDiscountSection(),
             const SizedBox(height: 20),
@@ -54,7 +55,6 @@ class _OrderPageState extends State<OrderPage> {
   }
 
   Widget buildProductSection(List<CoffeeModel> coffees) {
-    // عرض قائمة القهوة المختارة
     return Column(
       children: coffees.map((coffee) {
         return ListTile(

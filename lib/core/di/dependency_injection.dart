@@ -1,5 +1,6 @@
-import '../../data/database_helper/sql_helper.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../data/database_helper/sql_helper.dart';
 
 final GetIt locator = GetIt.instance;
 

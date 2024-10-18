@@ -1,6 +1,6 @@
-import 'package:coffee_shop_app/core/di/dependency_injection.dart';
-import 'package:coffee_shop_app/cubit/coffee_cubit.dart';
-import 'package:coffee_shop_app/data/database_helper/sql_helper.dart';
+import '../../core/di/dependency_injection.dart';
+import '../../cubit/coffee_cubit.dart';
+import '../../data/database_helper/sql_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/coffee_model.dart';
@@ -28,7 +28,6 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
   @override
   void initState() {
     super.initState();
-    // Fetch coffee items from the database asynchronously
     fetchCoffeeItems();
     searchController.addListener(filterCoffeeItems);
   }

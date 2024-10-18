@@ -1,11 +1,11 @@
-import 'package:coffee_shop_app/cubit/coffee_cubit.dart';
-import 'package:coffee_shop_app/data/models/coffee_model.dart';
+import '../../../cubit/coffee_cubit.dart';
+import '../../../data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class AddEditCoffeePage extends StatefulWidget {
-  final CoffeeModel? coffee; // إذا كان موجودًا، فهذا تعديل، وإلا إضافة جديدة
+  final CoffeeModel? coffee;
 
   const AddEditCoffeePage({super.key, this.coffee});
 
@@ -51,7 +51,7 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
       final rate = double.parse(_rateController.text.trim());
 
       final coffee = CoffeeModel(
-        id: widget.coffee?.id ?? 0, // إذا كانت إضافة، id سيتم توليده في قاعدة البيانات
+        id: widget.coffee?.id ?? 0, 
         name: name,
         type: type,
         price: price,
@@ -60,10 +60,8 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
       );
 
       if (widget.coffee == null) {
-        // إضافة قهوة جديدة
         context.read<CoffeeCubit>().addCoffee(coffee);
       } else {
-        // تعديل قهوة موجودة
         context.read<CoffeeCubit>().updateCoffee(coffee);
       }
 
@@ -85,7 +83,6 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
           key: _formKey,
           child: ListView(
             children: [
-              // اسم القهوة
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -100,7 +97,6 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
                 },
               ),
               const SizedBox(height: 16),
-              // نوع القهوة
               TextFormField(
                 controller: _typeController,
                 decoration: const InputDecoration(
@@ -115,7 +111,6 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
                 },
               ),
               const SizedBox(height: 16),
-              // السعر
               TextFormField(
                 controller: _priceController,
                 decoration: const InputDecoration(
@@ -134,7 +129,6 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
                 },
               ),
               const SizedBox(height: 16),
-              // رابط الصورة
               TextFormField(
                 controller: _imageController,
                 decoration: const InputDecoration(
@@ -150,7 +144,6 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
                 },
               ),
               const SizedBox(height: 16),
-              // التقييم
               TextFormField(
                 controller: _rateController,
                 decoration: const InputDecoration(

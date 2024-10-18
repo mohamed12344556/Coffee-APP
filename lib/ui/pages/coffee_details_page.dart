@@ -18,7 +18,7 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final coffee = ModalRoute.of(context)!.settings.arguments
-        as CoffeeModel; // استلام كائن CoffeeModel
+        as CoffeeModel; 
 
     return Scaffold(
       appBar: buildAppBar(context),
@@ -47,7 +47,7 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
             const Spacer(),
             CoffeePriceAndBuy(
   price: coffee.price,
-  selectedCoffee: coffee, // تمرير القهوة المختارة
+  selectedCoffee: coffee, 
 ),
             const Spacer(),
           ],
