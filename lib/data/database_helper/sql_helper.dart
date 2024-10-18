@@ -33,7 +33,6 @@ class DatabaseHelper {
   // Handle database upgrades
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < newVersion) {
-      // Example: Add new 'rate' column if it does not exist
       await db.execute('ALTER TABLE Coffees ADD COLUMN rate REAL NOT NULL DEFAULT 0.0');
       log('Database upgraded from version $oldVersion to $newVersion');
     }
@@ -45,7 +44,7 @@ class DatabaseHelper {
     String path = join(dbPath, 'coffee.db');
     Database db = await openDatabase(
       path,
-      version: 2, // Increment version to trigger upgrade
+      version: 2, 
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );

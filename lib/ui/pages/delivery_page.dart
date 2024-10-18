@@ -103,7 +103,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                     text: TextSpan(
                       text: "Delivery to ",
                       style: GoogleFonts.sora(
-                        color: Color(0xff808080),
+                        color: const Color(0xff808080),
                         fontSize: 12,
                       ),
                       children: [
@@ -128,7 +128,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                         height: 4,
                         width: size.width / 4 * 0.75,
                         decoration: BoxDecoration(
-                          color: Color(0xff36C07E),
+                          color: const Color(0xff36C07E),
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
@@ -139,7 +139,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                         height: 4,
                         width: size.width / 4 * 0.75,
                         decoration: BoxDecoration(
-                          color: Color(0xff36C07E),
+                          color: const Color(0xff36C07E),
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
@@ -150,7 +150,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                         height: 4,
                         width: size.width / 4 * 0.75,
                         decoration: BoxDecoration(
-                          color: Color(0xff36C07E),
+                          color: const Color(0xff36C07E),
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
@@ -161,7 +161,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                         height: 4,
                         width: size.width / 4 * 0.75,
                         decoration: BoxDecoration(
-                          color: Color(0xffE3E3E3),
+                          color: const Color(0xffE3E3E3),
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
@@ -210,7 +210,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                               style: GoogleFonts.sora(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xff303336),
+                                color: const Color(0xff303336),
                               ),
                             ),
                             Text(
@@ -218,7 +218,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                               style: GoogleFonts.sora(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xff808080),
+                                color: const Color(0xff808080),
                               ),
                             ),
                           ],
@@ -253,7 +253,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                                   style: GoogleFonts.sora(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xff303336),
+                                    color: const Color(0xff303336),
                                   ),
                                 ),
                                 Text(
@@ -261,7 +261,7 @@ class _DeliveryPageState extends State<DeliveryPage> {
                                   style: GoogleFonts.sora(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xff808080),
+                                    color: const Color(0xff808080),
                                   ),
                                 ),
                               ],

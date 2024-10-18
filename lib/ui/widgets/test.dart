@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderPage extends StatefulWidget {
+  const OrderPage({super.key});
+
   @override
   State<StatefulWidget> createState() => _OrderPageState();
 }
@@ -67,7 +69,7 @@ class _OrderPageState extends State<OrderPage> {
                         decoration: BoxDecoration(
                           color: isDeliver == false
                               ? const Color(0xffC67C4E)
-                              : const Color(0xfffff),
+                              : const Color(0x000fffff),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
@@ -95,7 +97,7 @@ class _OrderPageState extends State<OrderPage> {
                         decoration: BoxDecoration(
                           color: isDeliver == true
                               ? const Color(0xffC67C4E)
-                              : const Color(0xfffff),
+                              : const Color(0x000fffff),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(

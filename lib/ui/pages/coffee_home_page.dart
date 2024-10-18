@@ -1,4 +1,8 @@
+import 'package:coffee_shop_app/core/di/dependency_injection.dart';
+import 'package:coffee_shop_app/cubit/coffee_cubit.dart';
+import 'package:coffee_shop_app/data/database_helper/sql_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/coffee_model.dart';
 import '../widgets/build_banner.dart';
 import '../widgets/build_home_app_bar.dart';
@@ -19,46 +23,14 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
   int selectedIndex = 0;
   TextEditingController searchController = TextEditingController();
 
-  List<CoffeeModel> coffeeItems = [
-    CoffeeModel(
-        id: 1,
-        name: 'Coffee Mocha',
-        type: 'Deep Foam',
-        price: 4.53,
-        image: 'assets/images/2.png',
-        rate: 4.5),
-    CoffeeModel(
-        id: 2,
-        name: 'Flat White',
-        type: 'Espresso',
-        price: 3.53,
-        image: 'assets/images/3.png',
-        rate: 4.5),
-    CoffeeModel(
-        id: 3,
-        name: 'Caffe Mocha',
-        type: 'Deep Foam',
-        price: 4.53,
-        image: 'assets/images/4.png',
-        rate: 4.5),
-    CoffeeModel(
-        id: 4,
-        name: 'Flat White',
-        type: 'Espresso',
-        price: 3.53,
-        image: 'assets/images/5.png',
-        rate: 4.5),
-  ];
-
   List<CoffeeModel> filteredCoffeeItems = [];
 
   @override
   void initState() {
     super.initState();
-    filteredCoffeeItems = coffeeItems;
-    searchController.addListener(() {
-      filterCoffeeItems();
-    });
+    // Fetch coffee items from the database asynchronously
+    fetchCoffeeItems();
+    searchController.addListener(filterCoffeeItems);
   }
 
   @override
@@ -67,9 +39,17 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
     super.dispose();
   }
 
-  void filterCoffeeItems() {
+  Future<void> fetchCoffeeItems() async {
+    final coffeeItems = await locator<DatabaseHelper>().readDB();
     setState(() {
-      filteredCoffeeItems = coffeeItems
+      filteredCoffeeItems = coffeeItems;
+    });
+  }
+
+  void filterCoffeeItems() async {
+    final allCoffeeItems = await locator<DatabaseHelper>().readDB();
+    setState(() {
+      filteredCoffeeItems = allCoffeeItems
           .where((coffee) => coffee.name
               .toLowerCase()
               .contains(searchController.text.toLowerCase()))
@@ -91,39 +71,55 @@ class _CoffeeHomePageState extends State<CoffeeHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color(0xffF9F9F9),
-        body: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: BuildCustomAppBar(SearchController: searchController),
-            ),
-            // Promo Banner
-            const Positioned(
-              top: 200,
-              left: 20,
-              right: 20,
-              child: BuildBanner(),
-            ),
-            Positioned.fill(
-              top: 380,
-              child: CoffeeList(
-                coffeeItems: filteredCoffeeItems,
-                selectedCategoryIndex: selectedCategoryIndex,
-                updateCategory: updateCategory,
+    return BlocBuilder<CoffeeCubit, CoffeeState>(
+      builder: (context, state) {
+        if (state is CoffeeLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is CoffeeLoaded) {
+          final coffeeItems = state.coffees;
+          return SafeArea(
+            child: Scaffold(
+              backgroundColor: const Color(0xffF9F9F9),
+              body: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child:
+                        BuildCustomAppBar(SearchController: searchController),
+                  ),
+                  const Positioned(
+                    top: 200,
+                    left: 20,
+                    right: 20,
+                    child: BuildBanner(),
+                  ),
+                  Positioned.fill(
+                    top: 380,
+                    child: CoffeeList(
+                      coffeeItems: searchController.text.isEmpty
+                          ? coffeeItems
+                          : filteredCoffeeItems,
+                      selectedCategoryIndex: selectedCategoryIndex,
+                      updateCategory: updateCategory,
+                    ),
+                  ),
+                ],
+              ),
+              bottomNavigationBar: CoffeeBottomNavigationBar(
+                selectedIndex: selectedIndex,
+                onItemTapped: onItemTapped,
               ),
             ),
-          ],
-        ),
-        bottomNavigationBar: CoffeeBottomNavigationBar(
-          selectedIndex: selectedIndex,
-          onItemTapped: onItemTapped,
-        ),
-      ),
+          );
+        } else if (state is CoffeeEmpty) {
+          return const Center(child: Text('No coffee items available'));
+        } else if (state is CoffeeError) {
+          return Center(child: Text('Error: ${state.message}'));
+        }
+        return Container();
+      },
     );
   }
 }

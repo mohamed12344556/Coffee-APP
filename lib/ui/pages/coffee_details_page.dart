@@ -1,14 +1,12 @@
+import 'package:flutter/material.dart';
 import '../../data/models/coffee_model.dart';
 import '../widgets/build_app_bar.dart';
 import '../widgets/build_details_components.dart';
-import 'package:flutter/material.dart';
 
 class CoffeeDetailsPage extends StatefulWidget {
-  final CoffeeModel coffee;
-
-  const CoffeeDetailsPage({super.key, required this.coffee});
-
   static const String id = '/details_page';
+
+  const CoffeeDetailsPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _CoffeeDetailsPageState();
@@ -19,6 +17,9 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final coffee = ModalRoute.of(context)!.settings.arguments
+        as CoffeeModel; // استلام كائن CoffeeModel
+
     return Scaffold(
       appBar: buildAppBar(context),
       body: Padding(
@@ -26,13 +27,13 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CoffeeImage(imagePath: widget.coffee.image),
+            CoffeeImage(imagePath: coffee.image),
             const SizedBox(height: 16),
-            CoffeeName(name: widget.coffee.name),
+            CoffeeName(name: coffee.name),
             const SizedBox(height: 8),
             const CoffeeType(),
             const SizedBox(height: 16),
-            CoffeeRating(rate: widget.coffee.rate),
+            CoffeeRating(rate: coffee.rate),
             const Divider(
               height: 30,
               thickness: 1,
@@ -40,18 +41,18 @@ class _CoffeeDetailsPageState extends State<CoffeeDetailsPage> {
               indent: 20,
               endIndent: 20,
             ),
-            CoffeeDescription(description: widget.coffee.type),
+            CoffeeDescription(description: coffee.type),
             const SizedBox(height: 16),
             const SizeSelector(),
             const Spacer(),
-            CoffeePriceAndBuy(price: widget.coffee.price),
+            CoffeePriceAndBuy(
+  price: coffee.price,
+  selectedCoffee: coffee, // تمرير القهوة المختارة
+),
             const Spacer(),
           ],
         ),
       ),
     );
   }
-
-  
 }
-

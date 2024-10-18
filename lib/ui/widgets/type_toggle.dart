@@ -32,8 +32,8 @@ class _TypeToggleState extends State<TypeToggle> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: widget.isDeliver == false
-                    ? Color(0xffC67C4E)
-                    : Color(0xfffff),
+                    ? const Color(0xffC67C4E)
+                    : const Color(0x000fffff),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
@@ -59,8 +59,8 @@ class _TypeToggleState extends State<TypeToggle> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: widget.isDeliver == true
-                    ? Color(0xffC67C4E)
-                    : Color(0xfffff),
+                    ? const Color(0xffC67C4E)
+                    : const Color(0x000fffff),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(

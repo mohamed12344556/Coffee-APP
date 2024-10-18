@@ -8,7 +8,8 @@ import 'package:meta/meta.dart';
 part 'coffee_state.dart';
 
 class CoffeeCubit extends Cubit<CoffeeState> {
-  CoffeeCubit() : super(CoffeeInitial());
+  CoffeeCubit({required DatabaseHelper databaseHelper})
+      : super(CoffeeInitial());
 
   final databaseHelper = locator<DatabaseHelper>();
 
@@ -36,8 +37,8 @@ class CoffeeCubit extends Cubit<CoffeeState> {
         name: coffee.name,
         type: coffee.type,
         price: coffee.price,
-        image: coffee.image, // Fixed here: image should be `coffee.image`
-        rate: coffee.rate, // Add rate if required
+        image: coffee.image,
+        rate: coffee.rate, // تأكد من تمرير حقل rate
       );
       final coffees = await databaseHelper.readDB();
 

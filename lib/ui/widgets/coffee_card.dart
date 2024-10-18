@@ -1,4 +1,4 @@
-import '../pages/coffee_details_page.dart';
+import 'package:coffee_shop_app/ui/pages/coffee_details_page.dart';
 
 import '../../core/themes/app_colors.dart';
 import '../../data/models/coffee_model.dart';
@@ -15,7 +15,8 @@ class CoffeeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(CoffeeDetailsPage.id,arguments: coffee),
+      onTap: () => Navigator.of(context)
+          .pushNamed(CoffeeDetailsPage.id, arguments: coffee),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
