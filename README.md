@@ -36,14 +36,6 @@ The admin page allows product management with user-friendly input forms and clea
 
 ![Splash Screen](assets/screenshots/Splash.png)
 
-### Welcome Screen
-
-![Welcome Screen](assets/screenshots/Welcome_Screen.png)
-
-### Home Screen
-
-![Home Screen](assets/screenshots/Home_Screen.png)
-
 ### Admin Panel
 
 ![Admin Panel](assets/screenshots/Admin_Panel.png)
@@ -56,9 +48,21 @@ The admin page allows product management with user-friendly input forms and clea
 
 ![Check Inputs](assets/screenshots/Check_inputs.png)
 
-### Delivery Screen
+### Show Item if Added
 
-![Delivery Screen](assets/screenshots/Delivery_Screen.png)
+![Show Item if Added](assets/screenshots/Show_item_if_added.png)
+
+### Welcome Screen
+
+![Welcome Screen](assets/screenshots/Welcome_Screen.png)
+
+### Home Screen
+
+![Home Screen](assets/screenshots/Home_Screen.png)
+
+### Search Screen
+
+![Search Screen](assets/screenshots/Search.png)
 
 ### Details Screen
 
@@ -68,13 +72,9 @@ The admin page allows product management with user-friendly input forms and clea
 
 ![Order Screen](assets/screenshots/Oreder_Screen.png)
 
-### Search Screen
+### Delivery Screen
 
-![Search Screen](assets/screenshots/Search.png)
-
-### Show Item if Added
-
-![Show Item if Added](assets/screenshots/Show_item_if_added.png)
+![Delivery Screen](assets/screenshots/Delivery_Screen.png)
 
 ### Take Away Screen
 
@@ -84,11 +84,14 @@ The admin page allows product management with user-friendly input forms and clea
 
 - **Name**: Mohamed Ahmed Mohamed Abdelkawy
 - **Role**: Flutter Developer
+- **Email**: mohamedahbd545@gmail.com
+- **Number**: +201060796400
 
 ## Getting Started
 
 1. Clone the repository.
 2. Install the dependencies using:
-   ```bash
-   flutter pub get
-   ```
+
+```bash
+flutter pub get
+```
