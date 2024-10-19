@@ -72,13 +72,13 @@ The admin page allows product management with user-friendly input forms and clea
 
 ![Order Screen](assets/screenshots/Oreder_Screen.png)
 
-### Delivery Screen
-
-![Delivery Screen](assets/screenshots/Delivery_Screen.png)
-
 ### Take Away Screen
 
 ![Take Away Screen](assets/screenshots/Take_Away_Screen.png)
+
+### Delivery Screen
+
+![Delivery Screen](assets/screenshots/Delivery_Screen.png)
 
 ## Developer Information
 
