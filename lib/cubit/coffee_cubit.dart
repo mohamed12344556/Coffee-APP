@@ -37,8 +37,8 @@ class CoffeeCubit extends Cubit<CoffeeState> {
         name: coffee.name,
         type: coffee.type,
         price: coffee.price,
-        image: coffee.image,
         rate: coffee.rate, 
+        image: coffee.image,
       );
       final coffees = await databaseHelper.readDB();
 

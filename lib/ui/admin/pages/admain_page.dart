@@ -1,3 +1,5 @@
+import 'package:coffee_shop_app/ui/pages/welcome_page.dart';
+
 import '../../../core/di/dependency_injection.dart';
 import '../../../data/database_helper/sql_helper.dart';
 import '../../../data/models/coffee_model.dart';
@@ -115,6 +117,15 @@ class _AdminPageState extends State<AdminPage> {
         ),
         centerTitle: true,
         backgroundColor: Colors.brown,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, WelcomePage.id);
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -122,77 +133,81 @@ class _AdminPageState extends State<AdminPage> {
           children: [
             Form(
               key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: _nameController,
-                    decoration: const InputDecoration(labelText: 'Coffee Name'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a coffee name';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _typeController,
-                    decoration: const InputDecoration(labelText: 'Type'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter the type';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _priceController,
-                    decoration: const InputDecoration(labelText: 'Price'),
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter the price';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _rateController,
-                    decoration: const InputDecoration(labelText: 'Rate'),
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter the Rate';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    controller: _imageController,
-                    decoration: const InputDecoration(labelText: 'Image Path'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter the image path';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: isEditMode ? _editCoffee : _addCoffee,
-                        child:
-                            Text(isEditMode ? 'Update Coffee' : 'Add Coffee'),
-                      ),
-                      if (isEditMode)
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _nameController,
+                      decoration:
+                          const InputDecoration(labelText: 'Coffee Name'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a coffee name';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      controller: _typeController,
+                      decoration: const InputDecoration(labelText: 'Type'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the type';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      controller: _priceController,
+                      decoration: const InputDecoration(labelText: 'Price'),
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the price';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      controller: _rateController,
+                      decoration: const InputDecoration(labelText: 'Rate'),
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the Rate';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      controller: _imageController,
+                      decoration:
+                          const InputDecoration(labelText: 'Image Path'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the image path';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
                         ElevatedButton(
-                          onPressed: _resetForm,
-                          child: const Text('Cancel'),
+                          onPressed: isEditMode ? _editCoffee : _addCoffee,
+                          child:
+                              Text(isEditMode ? 'Update Coffee' : 'Add Coffee'),
                         ),
-                    ],
-                  ),
-                ],
+                        if (isEditMode)
+                          ElevatedButton(
+                            onPressed: _resetForm,
+                            child: const Text('Cancel'),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 20),

@@ -1,3 +1,4 @@
+
 import '../../core/themes/app_colors.dart';
 import '../../core/themes/font_weight_helper.dart';
 import '../../my_icons.dart';
@@ -353,7 +354,7 @@ Widget buildCashWallet(String value) {
   );
 }
 
-Widget buildPaymentMethodSection() {
+Widget buildPaymentMethodSection(VoidCallback onPressed) {
   return Container(
     height: 170,
     decoration: BoxDecoration(
@@ -368,7 +369,7 @@ Widget buildPaymentMethodSection() {
         CustomButton(
           title: "Order",
           size: const Size(400, 56),
-          onPressed: () {},
+          onPressed: onPressed,
         ),
       ],
     ),

@@ -117,7 +117,7 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
                   labelText: 'Price',
                   border: OutlineInputBorder(),
                 ),
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter price';
@@ -150,7 +150,7 @@ class _AddEditCoffeePageState extends State<AddEditCoffeePage> {
                   labelText: 'Rate',
                   border: OutlineInputBorder(),
                 ),
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter rate';

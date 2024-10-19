@@ -37,7 +37,7 @@ class CoffeeApp extends StatelessWidget {
           DeliveryPage.id: (context) => const DeliveryPage(),
           AdminPage.id: (context) => const AdminPage(),
         },
-        initialRoute: CoffeeHomePage.id,
+        initialRoute: AdminPage.id,
       ),
     );
   }

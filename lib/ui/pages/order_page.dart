@@ -1,3 +1,4 @@
+import 'package:coffee_shop_app/ui/pages/delivery_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/coffee_model.dart';
@@ -47,7 +48,11 @@ class _OrderPageState extends State<OrderPage> {
             const SizedBox(height: 20),
             buildPaymentSummary(),
             const Spacer(),
-            buildPaymentMethodSection(),
+            buildPaymentMethodSection(
+              () {
+            Navigator.pushNamed(context, DeliveryPage.id);
+          },
+            ),
           ],
         ),
       ),
