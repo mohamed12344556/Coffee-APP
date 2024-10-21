@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../../data/models/coffee_model.dart';
 import '../pages/order_page.dart';
 
@@ -22,7 +24,7 @@ class CoffeeImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage(imagePath),
+            image: FileImage(File(imagePath)),
           ),
         ),
       ),
@@ -217,7 +219,8 @@ class CoffeePriceAndBuy extends StatelessWidget {
   final double price;
   final CoffeeModel selectedCoffee;
 
-  const CoffeePriceAndBuy({super.key, required this.price, required this.selectedCoffee});
+  const CoffeePriceAndBuy(
+      {super.key, required this.price, required this.selectedCoffee});
 
   @override
   Widget build(BuildContext context) {

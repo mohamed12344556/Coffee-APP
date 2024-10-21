@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../pages/coffee_details_page.dart';
 
 import '../../core/themes/app_colors.dart';
@@ -32,7 +34,7 @@ class CoffeeCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
-                        image: AssetImage(coffee.image),
+                        image: FileImage(File(coffee.image)),
                         fit: BoxFit.cover,
                       ),
                     ),

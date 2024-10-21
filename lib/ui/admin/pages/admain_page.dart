@@ -4,6 +4,8 @@ import '../../../core/di/dependency_injection.dart';
 import '../../../data/database_helper/sql_helper.dart';
 import '../../../data/models/coffee_model.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart'; // Import the image picker package
+import 'dart:io';
 
 class AdminPage extends StatefulWidget {
   static const String id = "admin_page";
@@ -14,13 +16,15 @@ class AdminPage extends StatefulWidget {
   State<AdminPage> createState() => _AdminPageState();
 }
 
+ // For handling files
+
 class _AdminPageState extends State<AdminPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _typeController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _rateController = TextEditingController();
-  final TextEditingController _imageController = TextEditingController();
+  File? _imageFile; // To store the picked image file
 
   List<CoffeeModel> _coffeeList = [];
   CoffeeModel? _selectedCoffee;
@@ -39,26 +43,35 @@ class _AdminPageState extends State<AdminPage> {
     });
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
   void _resetForm() {
     _nameController.clear();
     _typeController.clear();
     _priceController.clear();
     _rateController.clear();
-    _imageController.clear();
     setState(() {
+      _imageFile = null;
       _selectedCoffee = null;
       isEditMode = false;
     });
   }
 
   Future<void> _addCoffee() async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() && _imageFile != null) {
       await locator<DatabaseHelper>().insertDB(
         rate: double.parse(_rateController.text),
         name: _nameController.text,
         type: _typeController.text,
         price: double.parse(_priceController.text),
-        image: _imageController.text,
+        image: _imageFile!.path, // Save image path in the database
       );
       _fetchCoffees();
       _resetForm();
@@ -72,7 +85,7 @@ class _AdminPageState extends State<AdminPage> {
         name: _nameController.text,
         type: _typeController.text,
         price: double.parse(_priceController.text),
-        image: _imageController.text,
+        image: _imageFile?.path ?? _selectedCoffee!.image, // Keep existing image if none selected
         id: _selectedCoffee!.id,
       );
       _fetchCoffees();
@@ -90,8 +103,8 @@ class _AdminPageState extends State<AdminPage> {
     _typeController.text = coffee.type;
     _priceController.text = coffee.price.toString();
     _rateController.text = coffee.rate.toString();
-    _imageController.text = coffee.image;
     setState(() {
+      _imageFile = File(coffee.image);
       _selectedCoffee = coffee;
       isEditMode = true;
     });
@@ -103,7 +116,6 @@ class _AdminPageState extends State<AdminPage> {
     _typeController.dispose();
     _priceController.dispose();
     _rateController.dispose();
-    _imageController.dispose();
     super.dispose();
   }
 
@@ -138,8 +150,7 @@ class _AdminPageState extends State<AdminPage> {
                   children: [
                     TextFormField(
                       controller: _nameController,
-                      decoration:
-                          const InputDecoration(labelText: 'Coffee Name'),
+                      decoration: const InputDecoration(labelText: 'Coffee Name'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter a coffee name';
@@ -179,16 +190,12 @@ class _AdminPageState extends State<AdminPage> {
                         return null;
                       },
                     ),
-                    TextFormField(
-                      controller: _imageController,
-                      decoration:
-                          const InputDecoration(labelText: 'Image Path'),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the image path';
-                        }
-                        return null;
-                      },
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: _pickImage, // Trigger image picker on tap
+                      child: _imageFile == null
+                          ? const Icon(Icons.image, size: 100, color: Colors.grey)
+                          : Image.file(_imageFile!, width: 100, height: 100),
                     ),
                     const SizedBox(height: 20),
                     Row(
@@ -196,8 +203,7 @@ class _AdminPageState extends State<AdminPage> {
                       children: [
                         ElevatedButton(
                           onPressed: isEditMode ? _editCoffee : _addCoffee,
-                          child:
-                              Text(isEditMode ? 'Update Coffee' : 'Add Coffee'),
+                          child: Text(isEditMode ? 'Update Coffee' : 'Add Coffee'),
                         ),
                         if (isEditMode)
                           ElevatedButton(
@@ -219,7 +225,7 @@ class _AdminPageState extends State<AdminPage> {
                   return ListTile(
                     leading: CircleAvatar(
                       radius: 20,
-                      backgroundImage: AssetImage(coffee.image),
+                      backgroundImage: FileImage(File(coffee.image)), // Display the picked image
                     ),
                     title: Text(coffee.name),
                     subtitle: Text(coffee.type),
@@ -227,17 +233,11 @@ class _AdminPageState extends State<AdminPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                          icon: const Icon(
-                            Icons.edit,
-                            color: Colors.green,
-                          ),
+                          icon: const Icon(Icons.edit, color: Colors.green),
                           onPressed: () => _populateFields(coffee),
                         ),
                         IconButton(
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                          ),
+                          icon: const Icon(Icons.delete, color: Colors.red),
                           onPressed: () => _deleteCoffee(coffee.id),
                         ),
                       ],
@@ -252,3 +252,4 @@ class _AdminPageState extends State<AdminPage> {
     );
   }
 }
+

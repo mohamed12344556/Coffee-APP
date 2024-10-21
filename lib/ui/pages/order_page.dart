@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:coffee_shop_app/ui/pages/delivery_page.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,8 @@ class _OrderPageState extends State<OrderPage> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedCoffees = ModalRoute.of(context)!.settings.arguments as List<CoffeeModel>;
+    final selectedCoffees =
+        ModalRoute.of(context)!.settings.arguments as List<CoffeeModel>;
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -42,7 +45,8 @@ class _OrderPageState extends State<OrderPage> {
             if (!isDeliver) buildDeliveryAddressSection(),
             const Divider(height: 20, thickness: 1, color: Color(0xffE3E3E3)),
             buildProductSection(
-                selectedCoffees), 
+              selectedCoffees,
+            ),
             const Divider(height: 35, thickness: 4, color: Color(0xFFF9F2ED)),
             buildDiscountSection(),
             const SizedBox(height: 20),
@@ -50,8 +54,8 @@ class _OrderPageState extends State<OrderPage> {
             const Spacer(),
             buildPaymentMethodSection(
               () {
-            Navigator.pushNamed(context, DeliveryPage.id);
-          },
+                Navigator.pushNamed(context, DeliveryPage.id);
+              },
             ),
           ],
         ),
@@ -65,7 +69,7 @@ class _OrderPageState extends State<OrderPage> {
         return ListTile(
           title: Text(coffee.name),
           subtitle: Text('${coffee.price} \$'),
-          leading: Image.asset(coffee.image, width: 50),
+          leading: Image.file(File(coffee.image), width: 50),
           trailing: Text('Rating: ${coffee.rate}'),
         );
       }).toList(),

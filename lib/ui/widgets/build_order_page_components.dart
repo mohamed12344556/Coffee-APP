@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import '../../core/themes/app_colors.dart';
 import '../../core/themes/font_weight_helper.dart';
@@ -157,9 +158,9 @@ Widget buildProductImage() {
     height: 54,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16),
-      image: const DecorationImage(
+      image: DecorationImage(
         fit: BoxFit.cover,
-        image: AssetImage("assets/images/2.png"),
+        image: FileImage(File("assets/images/2.png")),
       ),
     ),
   );
